@@ -43,7 +43,7 @@ fi
 echo "Building with $NUM_PROCESSORS cores."
 
 # Build the project.
-make -j $NUM_PROCESSORS
+make -j $NUM_PROCESSORS VERBOSE=1
 
 # Check if the project was built successfully.
 if [ $? -ne 0 ]; then

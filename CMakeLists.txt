@@ -16,6 +16,9 @@ set(
     ${CUDA_NVCC_FLAGS};
     ${CUDA_NVCC_FLAGS_GENERAL};
     -g
+    -O2
+    -arch=sm_20
+    -DVERBOSE
 )
 
 set(
@@ -37,10 +40,10 @@ if (GTEST STREQUAL "ON")
 	include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 	#Add all of the test source files.
-	set(TEST_SRC_FILES "test/cuda_test.cu")
+	set(TEST_SRC_FILES "test/main_test.cu")
 
 	# Tell CMake to build an executable for the tests.
-	add_executable(${PROJECT_NAME}Tests ${TEST_SRC_FILES})
+	cuda_add_executable(${PROJECT_NAME}Tests ${TEST_SRC_FILES})
 
 	# Link test executable against gtest & gtest_main.
 	# Linking to gtest_main allows us to avoid writing a main_test.cpp for the tests.
